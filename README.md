@@ -1,2 +1,5 @@
-# nuxt-learning
-Vue3 / Nuxt3の学習用リポジトリです。
+## 構築手順
+```bash
+$ npm create nuxt@latest my-nuxt-app -- -t v3
+$ npm install
+```
