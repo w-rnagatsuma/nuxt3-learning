@@ -20,7 +20,7 @@
           <p>公式のNuxt3ドキュメントへのリンクやリソースを提供します</p>
         </article>
       </section>
-      </section>>
+      </section>
 </template>
 
 <style scoped>
