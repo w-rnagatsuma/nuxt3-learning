@@ -1,26 +1,26 @@
 <template>
-    <section>
-<header class="hero">
-        <h1>Nuxt3学習</h1>
-        <p class="subtitle">Nuxt3の基礎を学ぶためのアプリケーション</p>  
-      </header>
-      <section class="features">
-        <article class="feature-card">
-          <h3>お問い合わせ</h3>
-          <p>質問やフィードバックがあれば、遠慮なくお問い合わせください</p>
-        </article>
+  <section>
+    <header class="hero">
+      <h1>Nuxt3学習</h1>
+      <p class="subtitle">Nuxt3の基礎を学ぶためのアプリケーション</p>
+    </header>
+    <section class="features">
+      <article class="feature-card">
+        <h3>お問い合わせ</h3>
+        <p>質問やフィードバックがあれば、遠慮なくお問い合わせください</p>
+      </article>
 
-        <article class="feature-card">
-          <h3>データリスト</h3>
-          <p>データの一覧表示と管理が簡単に行えます</p>
-        </article>
+      <article class="feature-card">
+        <h3>データリスト</h3>
+        <p>データの一覧表示と管理が簡単に行えます</p>
+      </article>
 
-        <article class="feature-card">
-          <h3>公式ドキュメント</h3>
-          <p>公式のNuxt3ドキュメントへのリンクやリソースを提供します</p>
-        </article>
-      </section>
-      </section>
+      <article class="feature-card">
+        <h3>公式ドキュメント</h3>
+        <p>公式のNuxt3ドキュメントへのリンクやリソースを提供します</p>
+      </article>
+    </section>
+  </section>
 </template>
 
 <style scoped>
@@ -45,7 +45,7 @@
    * auto-fit: 利用可能なスペースに合わせて自動的に列数を調整
    * minmax(250px, 1fr): 各列の幅は最小250px、最大は利用可能なスペースに応じて調整。1fr=fraction(1fr 2frなら1:2の割合でスペースを分割)
   */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -55,7 +55,9 @@
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 水平方向のズレ、垂直方向のズレ、ぼかしの半径、影の色 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* トランジション効果 */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* トランジション効果 */
 }
 
 .feature-card:hover {
