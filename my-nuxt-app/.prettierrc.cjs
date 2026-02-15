@@ -7,4 +7,4 @@ module.exports = {
   bracketSpacing: true, // オブジェクトリテラルの括弧内にスペースを入れる（例：{ foo: bar }）
   arrowParens: 'always', // アロー関数の引数が1つでも常に括弧で囲む（例：(x) => x）
   endOfLine: 'lf', // 改行コードをLF（\n）に統一（Unix/Mac形式）
-}
+};

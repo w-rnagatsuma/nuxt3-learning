@@ -14,6 +14,12 @@ $ npm install
     - モジュール、ビルド設定、ルーティングなどをここで設定可能
 
 3. `package.json` - プロジェクト情報とスクリプト
+    - **ESモジュール設定**
+        - `"type": "module"`: プロジェクト全体でESM（ES Modules）を使用
+        - この設定により、`.js`ファイルがESMとして扱われる
+        - `import/export`構文が標準で使用可能
+        - CommonJS形式を使う場合は`.cjs`拡張子を使用
+        - ESM形式を明示する場合は`.mjs`拡張子を使用（例: `eslint.config.mjs`）
     - スクリプト
         - `dev`: 開発サーバーを起動
         - `build`: 本番用にビルド
