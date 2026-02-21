@@ -2,6 +2,11 @@
 const title = ref('Nuxt Playground');
 const note = ref('ここで自由に試せます');
 const count = ref(0);
+const apiUrl = ref('/api');
+const isLoading = ref(false);
+const responseStatus = ref<number | null>(null);
+const responseBody = ref('');
+const responseError = ref('');
 
 const upperTitle = computed(() => title.value.toUpperCase());
 
@@ -9,6 +14,34 @@ const resetAll = () => {
   title.value = 'Nuxt Playground';
   note.value = 'ここで自由に試せます';
   count.value = 0;
+};
+
+const runApiTest = async () => {
+  isLoading.value = true;
+  responseError.value = '';
+  responseStatus.value = null;
+  responseBody.value = '';
+
+  try {
+    const result = await fetch(apiUrl.value, { method: 'GET' });
+    const text = await result.text();
+
+    responseStatus.value = result.status;
+
+    try {
+      responseBody.value = JSON.stringify(JSON.parse(text), null, 2);
+    } catch {
+      responseBody.value = text;
+    }
+
+    if (!result.ok) {
+      responseError.value = 'HTTPエラーが返されました';
+    }
+  } catch (error) {
+    responseError.value = error instanceof Error ? error.message : '通信に失敗しました';
+  } finally {
+    isLoading.value = false;
+  }
 };
 </script>
 
@@ -48,6 +81,25 @@ const resetAll = () => {
         <p><strong>title:</strong> {{ title }}</p>
         <p><strong>title(upper):</strong> {{ upperTitle }}</p>
         <p><strong>note:</strong> {{ note }}</p>
+      </article>
+
+      <article class="card api-test">
+        <h2>API疎通テスト</h2>
+        <label class="field">
+          URL
+          <input v-model="apiUrl" type="text" placeholder="/api/example" />
+        </label>
+        <div class="api-actions">
+          <button type="button" :disabled="isLoading" @click="runApiTest">
+            {{ isLoading ? '実行中...' : 'GET実行' }}
+          </button>
+        </div>
+
+        <p v-if="responseStatus !== null" class="result-line">
+          <strong>Status:</strong> {{ responseStatus }}
+        </p>
+        <p v-if="responseError" class="error-line">{{ responseError }}</p>
+        <pre v-if="responseBody" class="result-body">{{ responseBody }}</pre>
       </article>
     </section>
   </main>
@@ -106,6 +158,33 @@ const resetAll = () => {
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
   font: inherit;
+}
+
+.api-actions {
+  margin-bottom: 1rem;
+}
+
+.api-actions button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.result-line {
+  margin-bottom: 0.5rem;
+}
+
+.error-line {
+  color: #b00020;
+  margin-bottom: 0.75rem;
+}
+
+.result-body {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .count {
