@@ -47,59 +47,69 @@ const runApiTest = async () => {
 
 <template>
   <main class="playground">
-    <header class="hero">
-      <h1>Playground</h1>
-      <p>検証・実験用のページです。自由に値を変えて挙動を確認できます。</p>
-      <NuxtLink to="/" class="back-link">トップに戻る</NuxtLink>
+    <header class="playground__hero">
+      <h1 class="playground__title">Playground</h1>
+      <p class="playground__lead">検証・実験用のページです。自由に値を変えて挙動を確認できます。</p>
+      <NuxtLink to="/" class="playground__back-link">トップに戻る</NuxtLink>
     </header>
 
-    <section class="grid">
-      <article class="card">
-        <h2>リアクティブ入力</h2>
-        <label class="field">
-          タイトル
-          <input v-model="title" type="text" />
+    <section class="playground__grid">
+      <article class="playground__card">
+        <h2 class="playground__card-title">リアクティブ入力</h2>
+        <label class="playground__field">
+          <span class="playground__field-label">タイトル</span>
+          <input v-model="title" type="text" class="playground__input" />
         </label>
-        <label class="field">
-          メモ
-          <textarea v-model="note" rows="4" />
+        <label class="playground__field">
+          <span class="playground__field-label">メモ</span>
+          <textarea v-model="note" rows="4" class="playground__textarea" />
         </label>
       </article>
 
-      <article class="card">
-        <h2>カウンター</h2>
-        <p class="count">{{ count }}</p>
-        <div class="actions">
-          <button type="button" @click="count--">-1</button>
-          <button type="button" @click="count++">+1</button>
-          <button type="button" @click="resetAll">リセット</button>
+      <article class="playground__card">
+        <h2 class="playground__card-title">カウンター</h2>
+        <p class="playground__count">{{ count }}</p>
+        <div class="playground__actions">
+          <button type="button" class="playground__button" @click="count--">-1</button>
+          <button type="button" class="playground__button" @click="count++">+1</button>
+          <button type="button" class="playground__button" @click="resetAll">リセット</button>
         </div>
       </article>
 
-      <article class="card preview">
-        <h2>プレビュー</h2>
-        <p><strong>title:</strong> {{ title }}</p>
-        <p><strong>title(upper):</strong> {{ upperTitle }}</p>
-        <p><strong>note:</strong> {{ note }}</p>
+      <article class="playground__card playground__card--preview">
+        <h2 class="playground__card-title">プレビュー</h2>
+        <p class="playground__preview-line"><strong>title:</strong> {{ title }}</p>
+        <p class="playground__preview-line"><strong>title(upper):</strong> {{ upperTitle }}</p>
+        <p class="playground__preview-line"><strong>note:</strong> {{ note }}</p>
       </article>
 
-      <article class="card api-test">
-        <h2>API疎通テスト</h2>
-        <label class="field">
-          URL
-          <input v-model="apiUrl" type="text" placeholder="/api/example" />
+      <article class="playground__card playground__card--api-test">
+        <h2 class="playground__card-title">API疎通テスト</h2>
+        <label class="playground__field">
+          <span class="playground__field-label">URL</span>
+          <input
+            v-model="apiUrl"
+            type="text"
+            placeholder="/api/example"
+            class="playground__input"
+          />
         </label>
-        <div class="api-actions">
-          <button type="button" :disabled="isLoading" @click="runApiTest">
+        <div class="playground__api-actions">
+          <button
+            type="button"
+            :disabled="isLoading"
+            class="playground__button"
+            @click="runApiTest"
+          >
             {{ isLoading ? '実行中...' : 'GET実行' }}
           </button>
         </div>
 
-        <p v-if="responseStatus !== null" class="result-line">
+        <p v-if="responseStatus !== null" class="playground__result-line">
           <strong>Status:</strong> {{ responseStatus }}
         </p>
-        <p v-if="responseError" class="error-line">{{ responseError }}</p>
-        <pre v-if="responseBody" class="result-body">{{ responseBody }}</pre>
+        <p v-if="responseError" class="playground__error-line">{{ responseError }}</p>
+        <pre v-if="responseBody" class="playground__result-body">{{ responseBody }}</pre>
       </article>
     </section>
   </main>
@@ -109,96 +119,118 @@ const runApiTest = async () => {
 .playground {
   max-width: 1200px;
   margin: 0 auto;
-  color: white;
+  color: var(--c-bg);
 }
 
-.hero {
+.playground__hero {
   text-align: center;
-  padding: 2rem 0;
+  padding: var(--s-8) 0;
 }
 
-.hero h1 {
-  margin-bottom: 0.75rem;
+.playground__title {
+  margin-bottom: var(--s-3);
 }
 
-.hero p {
-  margin-bottom: 1rem;
+.playground__lead {
+  margin-bottom: var(--s-4);
+  line-height: var(--lh-base);
 }
 
-.back-link {
-  color: white;
+.playground__back-link {
+  color: var(--c-bg);
   text-decoration: underline;
 }
 
-.grid {
+.playground__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: var(--s-6);
 }
 
-.card {
-  background: white;
-  color: #333;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.playground__card {
+  background: var(--c-bg);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-2);
+  padding: var(--s-6);
+  box-shadow: var(--sh-1);
 }
 
-.field {
+.playground__card-title {
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-3);
+}
+
+.playground__field {
   display: grid;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
 }
 
-.field input,
-.field textarea,
-.actions button {
+.playground__field-label {
+  font-size: var(--fs-2);
+  color: var(--c-text);
+}
+
+.playground__input,
+.playground__textarea,
+.playground__button {
   width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-1);
+  padding: var(--s-2) var(--s-3);
   font: inherit;
 }
 
-.api-actions {
-  margin-bottom: 1rem;
+.playground__textarea {
+  resize: vertical;
 }
 
-.api-actions button:disabled {
+.playground__button {
+  background: var(--c-surface);
+  color: var(--c-text);
+  cursor: pointer;
+}
+
+.playground__api-actions {
+  margin-bottom: var(--s-3);
+}
+
+.playground__button:disabled {
   opacity: 0.7;
   cursor: wait;
 }
 
-.result-line {
-  margin-bottom: 0.5rem;
+.playground__result-line {
+  margin-bottom: var(--s-2);
 }
 
-.error-line {
-  color: #b00020;
-  margin-bottom: 0.75rem;
+.playground__error-line {
+  color: var(--c-danger);
+  margin-bottom: var(--s-3);
 }
 
-.result-body {
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 0.75rem;
+.playground__result-body {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-1);
+  padding: var(--s-3);
   white-space: pre-wrap;
   word-break: break-word;
 }
 
-.count {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 1rem;
+.playground__count {
+  font-size: var(--s-8);
+  font-weight: var(--fw-bold);
+  margin: 0 0 var(--s-3);
 }
 
-.actions {
+.playground__actions {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--s-2);
 }
 
-.preview p {
-  line-height: 1.6;
+.playground__preview-line {
+  line-height: var(--lh-base);
 }
 </style>

@@ -1,91 +1,94 @@
 <template>
-  <section>
-    <header class="hero">
-      <h1>Nuxt3学習</h1>
-      <p class="subtitle">Nuxt3の基礎を学ぶためのアプリケーション</p>
+  <section class="top-welcome">
+    <header class="top-welcome__hero">
+      <h1 class="top-welcome__title">Nuxt3学習</h1>
+      <p class="top-welcome__subtitle">Nuxt3の基礎を学ぶためのアプリケーション</p>
     </header>
-    <section class="features">
-      <article class="feature-card">
-        <h3>お問い合わせ</h3>
-        <p>質問やフィードバックがあれば、遠慮なくお問い合わせください</p>
+    <section class="top-welcome__cards">
+      <article class="top-welcome__card">
+        <h3 class="top-welcome__card-title">お問い合わせ</h3>
+        <p class="top-welcome__card-text">
+          質問やフィードバックがあれば、遠慮なくお問い合わせください
+        </p>
       </article>
 
-      <article class="feature-card">
-        <h3>データリスト</h3>
-        <p>データの一覧表示と管理が簡単に行えます</p>
+      <article class="top-welcome__card">
+        <h3 class="top-welcome__card-title">データリスト</h3>
+        <p class="top-welcome__card-text">データの一覧表示と管理が簡単に行えます</p>
       </article>
 
-      <article class="feature-card">
-        <h3>公式ドキュメント</h3>
-        <p>公式のNuxt3ドキュメントへのリンクやリソースを提供します</p>
+      <article class="top-welcome__card">
+        <h3 class="top-welcome__card-title">公式ドキュメント</h3>
+        <p class="top-welcome__card-text">
+          公式のNuxt3ドキュメントへのリンクやリソースを提供します
+        </p>
       </article>
 
-      <article class="feature-card">
-        <h3>Playground</h3>
-        <p>検証や実験を気軽に行える遊び場ページです</p>
-        <NuxtLink to="/playground" class="feature-link">開く</NuxtLink>
+      <article class="top-welcome__card">
+        <h3 class="top-welcome__card-title">Playground</h3>
+        <p class="top-welcome__card-text">検証や実験を気軽に行える遊び場ページです</p>
+        <NuxtLink to="/playground" class="top-welcome__card-link">開く</NuxtLink>
       </article>
     </section>
   </section>
 </template>
 
 <style scoped>
-/* ヒーローセクション - ページ上部の目立つエリア */
-.hero {
+.top-welcome__hero {
   text-align: center;
-  padding: 3rem 0;
-  color: white;
+  padding: var(--s-8) 0;
+  color: var(--c-bg);
 }
 
-.subtitle {
-  font-size: 1.5rem;
+.top-welcome__title {
+  margin-bottom: var(--s-2);
+}
+
+.top-welcome__subtitle {
+  font-size: var(--fs-3);
+  line-height: var(--lh-base);
   opacity: 0.9;
-  margin-bottom: 3rem;
+  margin-bottom: var(--s-8);
 }
 
-.features {
-  display: grid; /* グリッドレイアウト。「行×列」の格子状に配置 */
-  /* 
-   * 列の定義
-   * repeat: 同じ列指定の繰り返し
-   * auto-fit: 利用可能なスペースに合わせて自動的に列数を調整
-   * minmax(250px, 1fr): 各列の幅は最小250px、最大は利用可能なスペースに応じて調整。1fr=fraction(1fr 2frなら1:2の割合でスペースを分割)
-  */
+.top-welcome__cards {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: var(--s-6);
+  margin-bottom: var(--s-8);
 }
 
-.feature-card {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 水平方向のズレ、垂直方向のズレ、ぼかしの半径、影の色 */
+.top-welcome__card {
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-2);
+  padding: var(--s-6);
+  box-shadow: var(--sh-1);
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease; /* トランジション効果 */
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.45); /* ホバー時の影の変化 */
+.top-welcome__card:hover {
+  transform: translateY(-2px);
 }
 
-.feature-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #333;
+.top-welcome__card-title {
+  font-size: var(--fs-3);
+  margin-bottom: var(--s-2);
+  color: var(--c-text);
 }
 
-.feature-card p {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+.top-welcome__card-text {
+  color: var(--c-muted);
+  line-height: var(--lh-base);
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-2);
 }
 
-.feature-link {
-  color: #333;
-  font-weight: 600;
+.top-welcome__card-link {
+  color: var(--c-primary);
+  font-weight: var(--fw-bold);
   text-decoration: underline;
 }
 </style>
