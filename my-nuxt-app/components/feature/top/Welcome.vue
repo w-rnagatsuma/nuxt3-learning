@@ -19,6 +19,12 @@
         <h3>公式ドキュメント</h3>
         <p>公式のNuxt3ドキュメントへのリンクやリソースを提供します</p>
       </article>
+
+      <article class="feature-card">
+        <h3>Playground</h3>
+        <p>検証や実験を気軽に行える遊び場ページです</p>
+        <NuxtLink to="/playground" class="feature-link">開く</NuxtLink>
+      </article>
     </section>
   </section>
 </template>
@@ -75,5 +81,11 @@
   color: #666;
   line-height: 1.6;
   margin-bottom: 1rem;
+}
+
+.feature-link {
+  color: #333;
+  font-weight: 600;
+  text-decoration: underline;
 }
 </style>
