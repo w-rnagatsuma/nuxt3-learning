@@ -5,10 +5,14 @@
   --c-bg: #ffffff;
   --c-surface: #f9fafb;
   --c-border: #e5e7eb;
+  --c-primary-border: #3b82f6;
+  --c-primary-hover: #1d4ed8;
   --c-primary: #2563eb;
+  --c-on-primary: #ffffff;
   --c-danger: #dc2626;
 
   /* spacing (4px scale) */
+  --s-0: 0;
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -30,4 +34,27 @@
 
   /* shadow */
   --sh-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  /* font size */
+  --fs-1: 12px;
+  --fs-2: 14px;
+  --fs-3: 16px;
+  --fs-4: 20px;
+  --fs-5: 24px;
+  --fs-6: 32px;
+
+  /* font weight */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  /* line height */
+  --lh-tight: 1.4;
+  --lh-base: 1.6;
+  --lh-relaxed: 1.8;
+
+  /* letter spacing */
+  --ls-tight: -0.05em;
+  --ls-normal: normal;
+  --ls-wide: 0.05em;
 }

@@ -29,6 +29,11 @@
         <p class="top-welcome__card-text">検証や実験を気軽に行える遊び場ページです</p>
         <NuxtLink to="/playground" class="top-welcome__card-link">開く</NuxtLink>
       </article>
+
+      <NuxtLink to="/practice" class="top-welcome__card">
+        <h3 class="top-welcome__card-title">practice</h3>
+        <p class="top-welcome__card-text">練習用のページです</p>
+      </NuxtLink>
     </section>
   </section>
 </template>
